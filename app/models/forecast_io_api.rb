@@ -1,26 +1,29 @@
+require 'httparty'
 require 'json'
 
 class ForecastIoApi
   include HTTParty
 
   def initialize(profile)
-    @@url = "https://api.forecast.io/forecast/0d2fae036c63eb41ba914a58600cb1ef/" # TODO take out the developer key
+    @@url = "https://api.forecast.io/forecast/"
+    @key = ENV['FORECASTIO_TOKEN']
     @latitude = profile.latitude
     @longitude = profile.longitude
 
-    get_forecast
-    parse_forecast
-  end
-
-  def get_forecast
-    @response = HTTParty.get("#{@@url}#{@latitude},#{@longitude}").body
-  end
-
-  def parse_forecast
-    @forecast = JSON.parse @response, symbolize_names: true
+    @response = get_forecast
+    @forecast = parse_forecast
   end
 
   def current_weather
     @forecast[:currently][:icon]
+  end
+
+private
+  def get_forecast
+    HTTParty.get("#{@@url}#{@key}#{@latitude},#{@longitude}").body
+  end
+
+  def parse_forecast
+    JSON.parse @response, symbolize_names: true
   end
 end
