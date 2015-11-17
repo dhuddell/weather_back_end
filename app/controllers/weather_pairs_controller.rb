@@ -17,6 +17,15 @@ class WeatherPairsController < OpenReadController
 
     render json: @weather_pair
   end
+  # MY ATTEMPT TO MATCH A PAIR
+# GET WHERE /weather_pairs/1
+  def show_current
+
+    @current_pair = current_user.profile.weather_pairs.where("weather = ? AND profile_id = ?", params[:current_weather], params[:profile_id]).first
+
+    render json: @current_pair
+  end
+
 
   # POST /weather_pairs
   def create
