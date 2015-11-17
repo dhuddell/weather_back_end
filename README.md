@@ -1,6 +1,6 @@
 #RISE AND RAIN OR SHINE
 
-https://github.com/dhuddell/weather_back_end
+https://github.com/dhuddell/weather_front_end
 
 Deployed App: http://dhuddell.github.io/weather_front_end
 
