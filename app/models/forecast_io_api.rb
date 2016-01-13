@@ -19,6 +19,7 @@ class ForecastIoApi
   end
 
 private
+
   def get_forecast
     HTTParty.get("#{@@url}#{@key}#{@latitude},#{@longitude}").body
   end

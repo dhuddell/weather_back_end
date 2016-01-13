@@ -8,7 +8,8 @@ class ProfilesController < OpenReadController
 
   # GET /profiles/1
   def show
-    @profile = Profile.where user: params[:user_id]
+    # @profile = Profile.where user: params[:user_id]
+    @profile = current_user.profile
 
     render json: @profile
   end
